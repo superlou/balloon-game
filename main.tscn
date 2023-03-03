@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjijye4qqg5dx"]
+
+[ext_resource type="PackedScene" uid="uid://dltgmstywkyln" path="res://balloon.tscn" id="1_5d7qt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bg0yh"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vhrxx"]
+
+[sub_resource type="Sky" id="Sky_x7gt7"]
+sky_material = SubResource("ProceduralSkyMaterial_vhrxx")
+
+[sub_resource type="Environment" id="Environment_m0bo4"]
+background_mode = 2
+sky = SubResource("Sky_x7gt7")
+ssil_enabled = true
+
+[node name="Main" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_bg0yh")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground"]
+size = Vector3(100, 1, 100)
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.97639, 0.216014, 0, -0.216014, 0.97639, 0, 7.4366, 11.1709)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91982, 0.567676, -3.31457)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91982, 1.13514, -3.31457)
+size = Vector3(0.385199, 0.507233, 0.740585)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0880146, 0.567676, -4.49317)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57818, 0.567676, -2.82632)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m0bo4")
+
+[node name="Balloon" parent="." instance=ExtResource("1_5d7qt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.460156, -2.41699)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.924825, -0.0697127, -0.37395, 0.380393, 0.169488, 0.909162, 4.44089e-16, -0.983064, 0.183265, -4.21771, 8.21649, -0.153365)
+light_color = Color(1, 1, 0.929412, 1)
+shadow_enabled = true
