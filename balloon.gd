@@ -47,8 +47,13 @@ func _physics_process(delta):
 	var envelope_mass = volume * air_density(eat)
 	var displaced_mass = volume * air_density(sat)
 	var lift = displaced_mass - envelope_mass
-	apply_force(Vector3.UP * lift, $Envelope.position)  # todo this needs to be direction global!!!
-	print(Vector3.UP * lift)
+	
+	# Transform gravity direction to local space
+	var global_to_local: Transform3D = global_transform.affine_inverse()
+	global_to_local.origin = Vector3.ZERO
+	var lift_dir = global_to_local * Vector3.UP
+
+	apply_force(lift_dir * lift, $Envelope.position)
 
 
 func air_density(temperature):
